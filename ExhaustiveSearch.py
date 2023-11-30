@@ -1,5 +1,4 @@
 # This is where we'll have the function(s) for part A, Exhaustive Search Approach.  
-
 from itertools import combinations
 
 class Stock:
@@ -47,3 +46,37 @@ print("Second example:")
 for stock in example2:
     result2 += stock.numberOfStocks
 print(result2)
+
+
+def readStockDataFromFile(fileName):
+    allStocks = []
+    maxAmounts = []
+
+    with open(fileName, 'r') as file:
+        while True:
+            line = file.readline()
+            if not line.strip():
+                break
+
+            numberOfStocks = int(line.strip())
+            stockData = eval(file.readline().strip())
+            currentSetStocks = []
+
+            for data in stockData:
+                currentSetStocks.append(Stock(*data))
+
+            allStocks.append(currentSetStocks) 
+            maxAmounts.append(int(file.readline().strip()))
+            file.readline()
+    return allStocks, maxAmounts
+
+# Read stocks and max amounts from file
+allStocks, maxAmounts = readStockDataFromFile('input.txt')
+
+# Example to show the read stocks and max amounts
+for setIndex, stocks in enumerate(allStocks):
+    print(f"Set {setIndex + 1}:")
+    for stock in stocks:
+        print(f"  Number of Stocks: {stock.numberOfStocks}, Cost: {stock.cost}")
+    print(f"Max Amount for Set {setIndex + 1}: {maxAmounts[setIndex]}")
+    print()
