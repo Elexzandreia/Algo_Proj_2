@@ -1,4 +1,4 @@
-# This is where we'll have the function(s) for part A, Exhaustive Search Approach.  
+# This is where we have the function(s) for part A, Exhaustive Search Approach.  
 from itertools import combinations
 
 class Stock:
@@ -6,18 +6,16 @@ class Stock:
         self.numberOfStocks = numberOfStocks
         self.cost = cost
 
-
-def readStockDataFromFile(fileName):
+def readStockDataFromFile(input):
     allStocks = []
     maxAmounts = []
 
-    with open(fileName, 'r') as file:
+    with open(input, 'r') as file:
         while True:
             line = file.readline()
             if not line.strip():
                 break
 
-            numberOfStocks = int(line.strip())
             stockData = eval(file.readline().strip())
             currentSetStocks = []
 
@@ -29,6 +27,13 @@ def readStockDataFromFile(fileName):
             file.readline()
 
     return allStocks, maxAmounts
+
+def writeResultToOutputFile(result):
+    try:
+        with open("outputExhaustiveSearch.txt", "w") as outputFile:
+            outputFile.write(result + "\n") 
+    except Exception as e:
+        print(f"An error occurred: {str(e)}")
 
 def stockOptimization(maxAmountAllowed, stocks):
     currentBest = None
@@ -50,15 +55,8 @@ def totalNumberOfStocks(candidateStocks):
     totalStockNumber = sum(stock.numberOfStocks for stock in candidateStocks)
     return totalStockNumber
 
-def writeResultToOutputFile(result):
-    try:
-        with open("output.txt", "w") as outputFile:
-            outputFile.write(result + "\n") 
-    except Exception as e:
-        print(f"An error occurred: {str(e)}")
 
-
-allStocks, maxAmounts = readStockDataFromFile('input.txt')
+allStocks, maxAmounts = readStockDataFromFile('inputExhaustiveSearch.txt')
 totalResults = ""
 
 for setIndex, stocks in enumerate(allStocks):
@@ -74,7 +72,3 @@ for setIndex, stocks in enumerate(allStocks):
     totalResults += "\n"
 
 writeResultToOutputFile(totalResults)
-
-# Examples 
-# For set 1, the output should be 11; 1+4+6 at index 0,1,3, sum of the costs at these indices = 2+3+7 = 11 (which is <= 12)
-# For set 2, the output should be 12; 3+4+5 at index 0,1,2, sum of the costs at these indices = 2+3+3 = 8 (which is <= 10)
