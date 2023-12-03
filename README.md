@@ -1,5 +1,7 @@
 Elexzandreia Livermore, elexzandreia@csu.fullerton.edu
+
 Ahsan Amin, ahsanamin90@csu.fullerton.edu
+
 Sumeet Singh, sumeet321@csu.fullerton.edu
 
 Running Program:
