@@ -62,12 +62,8 @@ totalResults = ""
 for setIndex, stocks in enumerate(allStocks):
     example1 = stockOptimization(maxAmounts[setIndex], stocks)
     result1 = 0
-    print()
     for stock in example1:
-        print(f"Stocks selected: ({stock.numberOfStocks}, {stock.cost})")
         result1 += stock.numberOfStocks
-    print(f"Max Amount for Set {setIndex + 1}: {maxAmounts[setIndex]}")
-    print(f"Result to be printed to output.txt: {result1}\n")
     totalResults += str(result1)
     totalResults += "\n"
 
