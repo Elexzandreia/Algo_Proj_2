@@ -60,11 +60,11 @@ allStocks, maxAmounts = readStockDataFromFile('inputExhaustiveSearch.txt')
 totalResults = ""
 
 for setIndex, stocks in enumerate(allStocks):
-    example1 = stockOptimization(maxAmounts[setIndex], stocks)
-    result1 = 0
-    for stock in example1:
-        result1 += stock.numberOfStocks
-    totalResults += str(result1)
+    example = stockOptimization(maxAmounts[setIndex], stocks)
+    result = 0
+    for stock in example:
+        result += stock.numberOfStocks
+    totalResults += str(result)
     totalResults += "\n"
 
 writeResultToOutputFile(totalResults)
