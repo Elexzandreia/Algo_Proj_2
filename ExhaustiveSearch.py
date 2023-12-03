@@ -50,9 +50,16 @@ def totalNumberOfStocks(candidateStocks):
     totalStockNumber = sum(stock.numberOfStocks for stock in candidateStocks)
     return totalStockNumber
 
+def writeResultToOutputFile(result):
+    try:
+        with open("output.txt", "w") as outputFile:
+            outputFile.write(result + "\n") 
+    except Exception as e:
+        print(f"An error occurred: {str(e)}")
 
 
 allStocks, maxAmounts = readStockDataFromFile('input.txt')
+totalResults = ""
 
 for setIndex, stocks in enumerate(allStocks):
     example1 = stockOptimization(maxAmounts[setIndex], stocks)
@@ -63,6 +70,10 @@ for setIndex, stocks in enumerate(allStocks):
         result1 += stock.numberOfStocks
     print(f"Max Amount for Set {setIndex + 1}: {maxAmounts[setIndex]}")
     print(f"Result to be printed to output.txt: {result1}\n")
+    totalResults += str(result1)
+    totalResults += "\n"
+
+writeResultToOutputFile(totalResults)
 
 # Examples 
 # For set 1, the output should be 11; 1+4+6 at index 0,1,3, sum of the costs at these indices = 2+3+7 = 11 (which is <= 12)
